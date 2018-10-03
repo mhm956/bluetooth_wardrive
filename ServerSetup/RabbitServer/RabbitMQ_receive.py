@@ -29,7 +29,7 @@ class RabbitConsumer:
         ch.basic_ack(delivery_tag=method.delivery_tag)
 
     def construct_database(self):  # passwd: mysql
-        engine = sqlalchemy.create_engine('mysql://{}:{}@{}'.format(self.sqluser, self.sqlpasswd, self.sqlhost))
+        engine = sqlalchemy.create_engine('mysql+pymysql://{}:{}@{}'.format(self.sqluser, self.sqlpasswd, self.sqlhost))
         engine.execute('CREATE DATABASE IF NOT EXISTS wardrive')
         engine.execute('USE wardrive')
         engine.execute(
@@ -46,7 +46,7 @@ class RabbitConsumer:
         mac_pairs = parsed_json['mac_pairs']
 
         # Create the cursor for the table
-        engine = sqlalchemy.create_engine('mysql://{}:{}@{}'.format(self.sqluser, self.sqlpasswd, self.sqlhost))
+        engine = sqlalchemy.create_engine('mysql+pymysql://{}:{}@{}'.format(self.sqluser, self.sqlpasswd, self.sqlhost))
 
         # Creating a table cast so raw sql isn't needed
         engine.execute('USE wardrive')
@@ -68,7 +68,7 @@ class RabbitConsumer:
 
     def deconstruct_database(self):
         # # TODO: Refactor this to be more class-oriented
-        engine = sqlalchemy.create_engine('mysql://{}:{}@{}'.format(self.sqluser, self.sqlpasswd, self.sqlhost))
+        engine = sqlalchemy.create_engine('mysql+pymysql://{}:{}@{}'.format(self.sqluser, self.sqlpasswd, self.sqlhost))
         engine.execute('DROP DATABASE wardrive')
 
 

@@ -12,3 +12,6 @@ Build the webserver
 Run the webserver
 * ```docker run -d -p 80:80 webapp```
 
+apt install libmysqlclient-dev
+pip install mysqlclient
+export DYLD_LIBRARY_PATH=/usr/local/mysql/lib/
