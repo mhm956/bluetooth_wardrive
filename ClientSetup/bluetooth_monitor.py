@@ -12,7 +12,7 @@ import urllib3
 class BluetoothScanner:
     def __init__(self, rabbit_server_addr, rabbit_server_port):
 
-        print("Initializing bluetooth monitor client...")
+        print("Initializing website monitor client...")
 
         self.ip_addr = None
         self.location = None
@@ -39,7 +39,7 @@ class BluetoothScanner:
             self.mac_pairs = dict()
             self.ip_addr = ip_addr
             self.location = location
-            # Given a tuple, create a dictionary of the bluetooth devices.
+            # Given a tuple, create a dictionary of the website devices.
             for entry in structure:
                 if isinstance(entry, tuple):
                     self.mac_pairs[entry[0]] = entry[1]
@@ -61,7 +61,7 @@ class BluetoothScanner:
             self.location = None
 
     def scan_bluetooth(self):
-        """Scan nearby bluetooth networks"""
+        """Scan nearby website networks"""
         nearby_devices = bluetooth.discover_devices(lookup_names=True)
         print("Found {} devices at {}".format(len(nearby_devices), datetime.now()))
         timestamp = datetime.now().strftime('%m/%d/%Y %H:%M:%S')

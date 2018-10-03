@@ -33,7 +33,7 @@ class RabbitConsumer:
         engine.execute('CREATE DATABASE IF NOT EXISTS wardrive')
         engine.execute('USE wardrive')
         engine.execute(
-            'CREATE TABLE IF NOT EXISTS bluetooth(row_id INT(11) NOT NULL AUTO_INCREMENT, capture_time varchar(32),'
+            'CREATE TABLE IF NOT EXISTS website(row_id INT(11) NOT NULL AUTO_INCREMENT, capture_time varchar(32),'
             ' location varchar(32), ip_addr varchar(32), mac_addr varchar(32), ssid varchar(64), PRIMARY KEY (row_id))')
 
     def insert_data(self, body):
@@ -52,7 +52,7 @@ class RabbitConsumer:
         engine.execute('USE wardrive')
         meta = MetaData(engine)
         table = Table(
-            'bluetooth', meta,
+            'website', meta,
             Column('row_id', Integer, primary_key=True),
             Column('capture_time', String),
             Column('location', String),
