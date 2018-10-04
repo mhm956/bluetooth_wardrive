@@ -4,6 +4,8 @@
     <meta charset="utf-8"/>
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible"/>
     <meta content="width=device-width, initial-scale=1, maximum-scale=2, user-scalable=no" name="viewport"/>
+    {% block meta %}
+    {% endblock %}
     <title>
         {% block title %}
         {% endblock %}
@@ -22,19 +24,6 @@
             <a class="item" href="" style="padding-left: 2rem">
                 <i class="gitlab very large icon"></i>
             </a>
-{#            <div class="item">#}
-{#                <i class="grid layout icon"></i><a href="{% url 'index' %}">List of Projects</a>#}
-{#            </div>#}
-{#            <div class="ui simple dropdown item">#}
-{#                Component Testing#}
-{#                <i class="dropdown icon"></i>#}
-{#                <div class="menu">#}
-{#                    <a class="item" href=""><i class="empire icon"></i> Ajax</a>#}
-{#                    <a class="item" href=""><i class="rebel icon"></i> Django Channels</a>#}
-{#                    <a class="item" href=""><i class="first order icon"></i> SQL Query Builder</a>#}
-{#                    <a class="item" href=""><i class="jsfiddle icon"></i> Miscellaneous Components</a>#}
-{#                </div>#}
-{#            </div>#}
             <div class="header item">Bluetooth Wardrive</div>
             <div class="right item">
                 <div class="ui disabled input"><input type="text" placeholder="Search..."></div>

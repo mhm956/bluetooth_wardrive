@@ -1,5 +1,8 @@
 from django.shortcuts import render
 
+from website.models import Bluetooth
+
 
 def index(request):
-    return render(request, 'index.html')
+    entries = Bluetooth.objects.all()[:10]
+    return render(request, 'index.html', {'entries': entries})

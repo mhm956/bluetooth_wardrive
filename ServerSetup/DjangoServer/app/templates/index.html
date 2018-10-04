@@ -1,10 +1,39 @@
 {% extends "base.html" %}
 {% load staticfiles %}
 
+{% block meta %}
+    <meta http-equiv="Refresh" content="20">
+{% endblock %}
+
 {% block title %}
     Bluetooth Wardrive
 {% endblock %}
 
 {% block content %}
-    {# TODO: Add card view of all components here. #}
+    <table class="ui celled table">
+        <thead>
+            <tr><th>Capture Time</th>
+            <th>Location</th>
+            <th>IP Address</th>
+            <th>MAC Address</th>
+            <th>SSID</th></tr>
+        </thead>
+        <tbody>
+            {% for entry in entries %}
+                <tr>
+                    <td data-label="Capture Time">{{ entry.capture_time }}</td>
+                    <td data-label="Location">{{ entry.location }}</td>
+                    <td data-label="IP Address">{{ entry.ip_address }}</td>
+                    <td data-label="MAC Address">{{ entry.mac_addr }}</td>
+                    <td data-label="SSID">{{ entry.ssid }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+
+{% block additional_js %}
+    <script>
+
+    </script>
 {% endblock %}
