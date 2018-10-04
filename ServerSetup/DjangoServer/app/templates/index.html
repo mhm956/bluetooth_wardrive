@@ -1,6 +1,12 @@
 {% extends "base.html" %}
 {% load staticfiles %}
 
+{% block additional_css %}
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css"
+   integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA=="
+   crossorigin=""/>
+{% endblock %}
+
 {% block meta %}
     <meta http-equiv="Refresh" content="20">
 {% endblock %}
@@ -12,28 +18,45 @@
 {% block content %}
     <table class="ui celled table">
         <thead>
-            <tr><th>Capture Time</th>
+        <tr>
+            <th>Capture Time</th>
             <th>Location</th>
             <th>IP Address</th>
             <th>MAC Address</th>
-            <th>SSID</th></tr>
+            <th>SSID</th>
+        </tr>
         </thead>
         <tbody>
-            {% for entry in entries %}
-                <tr>
-                    <td data-label="Capture Time">{{ entry.capture_time }}</td>
-                    <td data-label="Location">{{ entry.location }}</td>
-                    <td data-label="IP Address">{{ entry.ip_address }}</td>
-                    <td data-label="MAC Address">{{ entry.mac_addr }}</td>
-                    <td data-label="SSID">{{ entry.ssid }}</td>
-                </tr>
-            {% endfor %}
+        {% for entry in entries %}
+            <tr>
+                <td data-label="Capture Time">{{ entry.capture_time }}</td>
+                <td data-label="Location">{{ entry.location }}</td>
+                <td data-label="IP Address">{{ entry.ip_address }}</td>
+                <td data-label="MAC Address">{{ entry.mac_addr }}</td>
+                <td data-label="SSID">{{ entry.ssid }}</td>
+            </tr>
+        {% endfor %}
         </tbody>
     </table>
+    <div id="map" class="ui container" style="height:500px; margin-top: 10px; position: relative; outline:none" tabindex="0"></div>
 {% endblock %}
 
 {% block additional_js %}
-    <script>
+    <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js"
+   integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA=="
+   crossorigin=""></script>
+    <script type="application/javascript">
+        var map = L.map('map').setView([29.5476, -98.4751], 11);
 
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+        let lat_lon;
+        {% for entry in entries %}
+        lat_lon = "{{ entry.location }}";
+        L.marker([lat_lon.split(',')[0], lat_lon.split(',')[1]]).addTo(map)
+            .bindPopup('SSID: {{ entry.ssid }}<br>MAC: {{ entry.mac_addr }}')
+            .openPopup();
+        {% endfor %}
     </script>
 {% endblock %}
