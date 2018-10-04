@@ -4,7 +4,7 @@
 sudo apt upgrade
 sudo apt install python3-pip python3-dev ipython
 sudo apt install bluetooth libbluetooth-dev
-pip3 install pybluez pika
+pip3 install pybluez pika beautifulsoup4 html5lib
 ```
 
 ## Running the client
