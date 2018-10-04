@@ -54,4 +54,6 @@ COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
 EXPOSE 80
+#CMD ["python3", "/home/docker/code/app/manage.py", "makemigrations"]
+#CMD ["python3", "/home/docker/code/app/manage.py", "migrate"]
 CMD ["supervisord", "-n"]

@@ -3,6 +3,7 @@ import time
 
 import pika
 from django.core.management import BaseCommand
+from django.core.management import call_command
 
 from website.models import Bluetooth
 
@@ -16,6 +17,8 @@ class Command(BaseCommand):
         pass
 
     def handle(self, *args, **options):
+        call_command("makemigrations", interactive=False)
+        call_command("migrate", interactive=False)
         consumer = RabbitConsumer(rabbit_server_addr="129.114.111.193", rabbit_server_port=5672)
         try:
             print(' [*] Waiting for messages. To exit, press CTRL+C')
