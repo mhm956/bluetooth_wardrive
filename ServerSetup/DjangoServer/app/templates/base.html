@@ -10,12 +10,47 @@
     </title>
     {% block css %}
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.9/semantic.min.css"/>
+        <link rel="stylesheet" href="http://semantic-ui-forest.com/static/dist/semantic-ui/forest-themes/bootswatch/semantic.darkly.min.css"/>
     {% endblock %}
     {% block additional_css %}
     {% endblock %}
 </head>
 <body>
 {% block body %}
+    <div class="ui borderless stackable menu">
+        <div class="ui fluid container">
+            <a class="item" href="" style="padding-left: 2rem">
+                <i class="gitlab very large icon"></i>
+            </a>
+{#            <div class="item">#}
+{#                <i class="grid layout icon"></i><a href="{% url 'index' %}">List of Projects</a>#}
+{#            </div>#}
+{#            <div class="ui simple dropdown item">#}
+{#                Component Testing#}
+{#                <i class="dropdown icon"></i>#}
+{#                <div class="menu">#}
+{#                    <a class="item" href=""><i class="empire icon"></i> Ajax</a>#}
+{#                    <a class="item" href=""><i class="rebel icon"></i> Django Channels</a>#}
+{#                    <a class="item" href=""><i class="first order icon"></i> SQL Query Builder</a>#}
+{#                    <a class="item" href=""><i class="jsfiddle icon"></i> Miscellaneous Components</a>#}
+{#                </div>#}
+{#            </div>#}
+            <div class="header item">Bluetooth Wardrive</div>
+            <div class="right item">
+                <div class="ui disabled input"><input type="text" placeholder="Search..."></div>
+            </div>
+        </div>
+    </div>
+    <div class="ui two column grid" style="padding-top: 3rem;">
+        <div class="three wide column" style="padding-left: 3rem;">
+            {% block sidebar %}
+            {% endblock %}
+        </div>
+        <div class="ten wide column" style="padding-left: 2rem">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </div>
 {% endblock %}
 </body>
 <footer>
