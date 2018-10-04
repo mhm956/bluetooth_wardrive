@@ -53,9 +53,18 @@ class RabbitConsumer:
         mac_pairs = parsed_json['mac_pairs']
         for mac_addr in mac_pairs:
             Bluetooth.objects.create(
-                timestamp=parsed_json['timestamp'],
+                capture_time=parsed_json['timestamp'],
+                location=parsed_json['location'],
+                ip_address=parsed_json['ip_addr'],
+                mac_addr=mac_addr,
+                ssid=mac_pairs[mac_addr]
+            )
+        if mac_pairs == "":
+            print("No devices detected")
+            Bluetooth.objects.create(
+                capture_time=parsed_json['timestamp'],
                 location=parsed_json['location'],
                 ip_address=parsed_json['ip_addr'],
                 mac_addr=parsed_json['mac_pairs'],
-                ssid=mac_pairs[mac_addr]
+                ssid="None"
             )
